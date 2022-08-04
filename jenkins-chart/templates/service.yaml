@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "jenkins-chart.fullname" . }}
+spec:
+  type: NodePort
+  ports:
+  - port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.port }}
+  selector:
+    {{- include "jenkins-chart.selectorLabels" . | nindent 4 }}
